@@ -35,6 +35,7 @@
       margin: 0 auto;
       background: #fff;
       padding-bottom: 48px;
+      /* no radius/shadow on mobile — edge-to-edge */
     }
 
     /* ── Hero section ── */
@@ -119,10 +120,19 @@
       line-height: 1.5;
     }
 
-    .session-note span {
+    /* emoji icon — never shrink */
+    .session-note .note-icon {
       font-size: 15px;
       flex-shrink: 0;
       margin-top: 1px;
+    }
+
+    /* text — allowed to shrink and wrap */
+    .session-note .note-text {
+      flex: 1;
+      min-width: 0;
+      word-break: break-word;
+      overflow-wrap: break-word;
     }
 
     /* ── Poster image ── */
@@ -303,23 +313,31 @@
       .lp-hero {
         padding: 22px 14px 20px;
       }
-      .session-box,
-      .lp-poster,
-      .section-divider,
-      .registration,
+      .session-box {
+        margin: 16px 12px;
+        padding: 14px 12px 12px;
+      }
+      .lp-poster {
+        padding: 0 12px;
+      }
+      .section-divider {
+        margin: 0 12px 20px;
+      }
+      .registration {
+        padding: 0 12px;
+      }
       .invite-child {
-        margin-left: 12px;
-        margin-right: 12px;
-        padding-left: 12px;
-        padding-right: 12px;
+        margin: 20px 12px 0;
+        padding: 14px 12px;
       }
       .session-row .label {
         min-width: 76px;
       }
     }
 
-    /* ── Tablet: 560px – 1023px ── */
-    @media (min-width: 560px) {
+    /* ── Tablet: 640px – 1023px ── */
+    /* 640px safely clears all common phones (max ~430px @ 1x, ~480px wide) */
+    @media (min-width: 640px) {
       body {
         padding: 32px 16px;
       }
@@ -536,8 +554,8 @@
       </div>
 
       <div class="session-note">
-        <span>ℹ️</span>
-        <span>Link Webinar akan diberikan di dalam group WhatsApp</span>
+        <span class="note-icon">ℹ️</span>
+        <span class="note-text">Link Webinar akan diberikan di dalam group WhatsApp</span>
       </div>
     </div>
 
