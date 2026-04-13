@@ -1,13 +1,417 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ms">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Online Sessions</title>
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <title>PST26 - SK Olak Lempit</title>
+
+  <!-- Poppins Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- intl-tel-input -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css" />
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f2f2f2;
+      color: #222;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── Page wrapper ── */
+    .lp-wrap {
+      max-width: 520px;
+      margin: 0 auto;
+      background: #fff;
+      padding-bottom: 48px;
+    }
+
+    /* ── Hero section ── */
+    .lp-hero {
+      background: #00cc85;
+      padding: 32px 24px 28px;
+      text-align: center;
+      color: #fff;
+    }
+
+    .lp-hero h1 {
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 1.3;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+    }
+
+    .lp-hero h2 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-top: 6px;
+      opacity: 0.92;
+    }
+
+    .lp-hero p {
+      font-size: 13.5px;
+      font-weight: 400;
+      margin-top: 12px;
+      opacity: 0.95;
+      line-height: 1.65;
+    }
+
+    /* ── Session info box ── */
+    .session-box {
+      margin: 24px 20px;
+      border: 2px solid #00cc85;
+      border-radius: 14px;
+      padding: 20px 20px 18px;
+      background: #fff;
+    }
+
+    .session-box h3 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #00cc85;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 14px;
+    }
+
+    .session-row {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: #333;
+    }
+
+    .session-row .label {
+      font-weight: 600;
+      min-width: 90px;
+      color: #111;
+    }
+
+    .session-row .value {
+      font-weight: 400;
+    }
+
+    .session-note {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      margin-top: 14px;
+      background: #f0fdf8;
+      border: 1px solid rgba(0, 204, 133, 0.3);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 13px;
+      color: #444;
+      line-height: 1.5;
+    }
+
+    .session-note span {
+      font-size: 15px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── Poster image ── */
+    .lp-poster {
+      padding: 0 20px;
+      margin-bottom: 28px;
+    }
+
+    .lp-poster img {
+      width: 100%;
+      border-radius: 12px;
+      display: block;
+    }
+
+    /* ── Section divider ── */
+    .section-divider {
+      height: 1px;
+      background: rgba(0,0,0,.08);
+      margin: 0 20px 28px;
+    }
+
+    /* ── Registration form ── */
+    .registration {
+      padding: 0 20px;
+    }
+
+    .registration h3 {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: #111;
+      line-height: 1.5;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 6px;
+    }
+
+    .form-group label .required {
+      color: #e53e3e;
+      margin-left: 2px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid rgba(0,0,0,.15);
+      border-radius: 8px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      color: #222;
+      background: #fff;
+      outline: none;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .form-control:focus {
+      border-color: #00cc85;
+      box-shadow: 0 0 0 3px rgba(0, 204, 133, 0.12);
+    }
+
+    /* intl-tel-input overrides */
+    .iti {
+      width: 100%;
+    }
+
+    .iti__flag-container {
+      padding: 0;
+    }
+
+    .iti--separate-dial-code .iti__selected-flag {
+      background: transparent;
+      border-right: 1.5px solid rgba(0,0,0,.12);
+      padding: 0 8px 0 12px;
+      border-radius: 8px 0 0 8px;
+    }
+
+    .iti--separate-dial-code input.form-control {
+      padding-left: 90px;
+    }
+
+    /* Submit button */
+    .btn-submit {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      margin-top: 8px;
+      background: #00cc85;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      font-size: 13.5px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .btn-submit:hover {
+      background: #00b876;
+    }
+
+    .btn-submit:active {
+      transform: scale(0.98);
+    }
+
+    /* ── Invite child section ── */
+    .invite-child {
+      margin: 28px 20px 0;
+      padding: 20px;
+      border: 1.5px solid rgba(0,0,0,.1);
+      border-radius: 12px;
+      background: #fafafa;
+    }
+
+    .invite-child h3 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 16px;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .checkbox-group input[type="checkbox"] {
+      width: 17px;
+      height: 17px;
+      accent-color: #00cc85;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .checkbox-group label {
+      font-size: 13.5px;
+      font-weight: 400;
+      color: #444;
+      cursor: pointer;
+      margin: 0;
+    }
+
+    /* ── Success message (hidden by default) ── */
+    .success-msg {
+      display: none;
+      text-align: center;
+      padding: 20px;
+      color: #00cc85;
+      font-weight: 600;
+      font-size: 15px;
+    }
+  </style>
 </head>
 <body>
-  <h1>Online Sessions</h1>
-  <p>Coming soon.</p>
+
+  <div class="lp-wrap">
+
+    <!-- ── Hero ── -->
+    <div class="lp-hero">
+      <h1>Sesi Online Penerangan:<br>Rahsia Anak Minat Belajar</h1>
+      <h2>Bersama ibu bapa SK Olak Lempit</h2>
+      <p>Sertai sesi online khas ini untuk memahami bagaimana ibu bapa boleh membantu anak membina minat belajar secara konsisten dan menyeronokkan.</p>
+    </div>
+
+    <!-- ── Session info ── -->
+    <div class="session-box">
+      <h3>Maklumat Sesi</h3>
+
+      <div class="session-row">
+        <span class="label">Tarikh</span>
+        <span class="value">: 16 April 2026</span>
+      </div>
+      <div class="session-row">
+        <span class="label">Hari</span>
+        <span class="value">: Khamis</span>
+      </div>
+      <div class="session-row">
+        <span class="label">Masa</span>
+        <span class="value">: 8:00 Malam</span>
+      </div>
+      <div class="session-row">
+        <span class="label">Platform</span>
+        <span class="value">: Webinar Meeting (Online)</span>
+      </div>
+
+      <div class="session-note">
+        <span>ℹ️</span>
+        <span>Link Webinar akan diberikan di dalam group WhatsApp</span>
+      </div>
+    </div>
+
+    <!-- ── Poster ── -->
+    <div class="lp-poster">
+      <img src="assets/images/poster.png" alt="Poster Sesi Online Rahsia Anak Minat Belajar" />
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- ── Registration form ── -->
+    <div class="registration">
+      <h3>Isi Maklumat Ibu / Bapa / Penjaga Di Bawah Untuk Sesi Online Rahsia Anak Minat Belajar</h3>
+
+      <form id="registration-form" novalidate>
+
+        <div class="form-group">
+          <label for="full-name">Nama Penuh <span class="required">*</span></label>
+          <input type="text" class="form-control" id="full-name" name="full_name" placeholder="Nama penuh anda" required />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Emel <span class="required">*</span></label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="emel@contoh.com" required />
+        </div>
+
+        <div class="form-group">
+          <label for="phone">No. Telefon <span class="required">*</span></label>
+          <input type="tel" class="form-control" id="phone" name="phone" placeholder="Nombor telefon anda" required />
+          <input type="hidden" id="phone-full" name="phone_full" />
+          <input type="hidden" id="phone-code" name="phone_code" />
+          <input type="hidden" id="address-country" name="address_country" />
+        </div>
+
+        <button type="submit" class="btn-submit">
+          DAFTAR &amp; SERTAI GROUP WHATSAPP
+        </button>
+
+        <p class="success-msg" id="success-msg">Terima kasih! Pendaftaran anda telah berjaya. ✅</p>
+
+      </form>
+    </div>
+
+    <!-- ── Invite child ── -->
+    <div class="invite-child">
+      <h3>Invite Child</h3>
+
+      <div class="form-group">
+        <label for="child-pin">Masukkan PIN Anak <span class="required">*</span></label>
+        <input type="text" class="form-control" id="child-pin" name="child_pin" placeholder="PIN kod anak" />
+      </div>
+
+      <div class="checkbox-group">
+        <input type="checkbox" id="add-as-child" name="add_as_child" />
+        <label for="add-as-child">Add this user as my child</label>
+      </div>
+    </div>
+
+  </div><!-- /.lp-wrap -->
+
+  <!-- intl-tel-input JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+  <script>
+    // Init international phone input, default to Malaysia
+    const phoneInput = document.querySelector('#phone');
+    const iti = window.intlTelInput(phoneInput, {
+      initialCountry: 'my',
+      preferredCountries: ['my', 'sg', 'id', 'bn'],
+      separateDialCode: true,
+      utilsScript: 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js'
+    });
+
+    // On form submit — populate hidden fields then handle submission
+    document.getElementById('registration-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // Store full international number in hidden field
+      document.getElementById('phone-full').value = iti.getNumber();
+      document.getElementById('phone-code').value = '+' + iti.getSelectedCountryData().dialCode;
+      document.getElementById('address-country').value = iti.getSelectedCountryData().iso2.toUpperCase();
+
+      // TODO: Replace this block with your form submission logic
+      // e.g. POST to an API, redirect to WhatsApp link, etc.
+      document.getElementById('success-msg').style.display = 'block';
+      this.reset();
+    });
+  </script>
+
 </body>
 </html>
